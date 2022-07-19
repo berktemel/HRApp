@@ -1,4 +1,4 @@
-Feature: Delete User
+Feature: Delete A User
 
   Scenario Outline: User deleted
     Given Admin tries to delete a user

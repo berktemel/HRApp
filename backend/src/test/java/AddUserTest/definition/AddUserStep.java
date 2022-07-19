@@ -9,13 +9,10 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import static org.junit.Assert.*;
 
-
 public class AddUserStep {
-    private UserDto userDto;
     private final String BASE_URL = "http://localhost:8080/api";
     private Response response;
     private RequestSpecification request;
-    private String content;
     @Given("Someone navigate to signup page")
     public void someoneNavigateToSignupPage() {
         RestAssured.baseURI = BASE_URL;
@@ -25,7 +22,7 @@ public class AddUserStep {
 
     @When("Someone enters {string} {string} {string} {string}")
     public void someoneEntersNameLastNameEmailPassword(String name, String lastName, String email, String password) {
-        content = "{\n  \"name\": \"" + name + "\"," +
+        String content = "{\n  \"name\": \"" + name + "\"," +
                 "\n  \"lastName\": \"" + lastName + "\"," +
                 "\n \"email\": \"" + email + "\"," +
                 "\n \"password\": \"" + password + "\"\n}";

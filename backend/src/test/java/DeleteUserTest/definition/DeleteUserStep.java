@@ -12,7 +12,6 @@ public class DeleteUserStep {
     private final String BASE_URL = "http://localhost:8080/api";
     private Response response;
     private RequestSpecification request;
-    private String content;
     @Given("Admin tries to delete a user")
     public void adminTriesToDeleteAUser() {
         RestAssured.baseURI = BASE_URL;

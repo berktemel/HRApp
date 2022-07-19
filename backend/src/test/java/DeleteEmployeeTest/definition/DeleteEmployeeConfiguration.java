@@ -6,4 +6,5 @@ import org.springframework.test.context.ContextConfiguration;
 @CucumberContextConfiguration
 @ContextConfiguration
 public class DeleteEmployeeConfiguration {
+
 }

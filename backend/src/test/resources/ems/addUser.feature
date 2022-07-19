@@ -1,4 +1,4 @@
-Feature: Add User
+Feature: Add New User
 
   Scenario Outline: User added successfully
     Given Someone navigate to signup page

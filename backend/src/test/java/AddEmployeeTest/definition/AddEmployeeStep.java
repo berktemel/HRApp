@@ -12,7 +12,6 @@ public class AddEmployeeStep {
     private final String BASE_URL = "http://localhost:8080/api";
     private Response response;
     private RequestSpecification request;
-    private String content;
     @Given("User navigates to add employee page")
     public void userNavigatesToAddEmployeePage() {
         RestAssured.baseURI = BASE_URL;
@@ -24,7 +23,7 @@ public class AddEmployeeStep {
     public void userEntersNameLastNameEmailDepartmentStartDateSalary(String name, String lastName,
                                                                      String email, String department,
                                                                      String startDate, int salary) {
-        content = "{\n \"firstName\": \"" + name + "\", \n" +
+        String content = "{\n \"firstName\": \"" + name + "\", \n" +
                 "\"lastName\": \"" + lastName + "\", \n" +
                 "\"email\": \"" + email + "\", \n" +
                 "\"department\": { \n \"depName\": \"" + department + "\" \n}," +

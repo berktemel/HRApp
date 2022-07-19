@@ -1,4 +1,4 @@
-Feature: Add User
+Feature: Add New Employee
 
   Scenario Outline: Employee added successfully
     Given User navigates to add employee page

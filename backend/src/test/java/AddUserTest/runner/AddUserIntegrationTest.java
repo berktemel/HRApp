@@ -10,4 +10,5 @@ import org.junit.runner.RunWith;
         glue = {"AddUserTest.definition"}
 )
 public class AddUserIntegrationTest {
+
 }

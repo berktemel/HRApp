@@ -1,16 +1,11 @@
 package LoginTest.definition;
 
-import ems.controller.UserController;
-import ems.module.UserDto;
-import ems.service.UserService;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
 
 import static org.junit.Assert.*;

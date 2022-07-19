@@ -1,4 +1,4 @@
-Feature: Login
+Feature: User Login
 
   Scenario Outline: Successful Login
     Given User navigate to login page

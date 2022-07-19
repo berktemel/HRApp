@@ -1,4 +1,4 @@
-Feature: Delete Employee
+Feature: Delete An Employee
 
   Scenario Outline: Employee deleted
     Given User tries to delete an employee
