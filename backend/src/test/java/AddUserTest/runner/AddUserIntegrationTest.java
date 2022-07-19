@@ -1,0 +1,13 @@
+package AddUserTest.runner;
+
+import io.cucumber.junit.Cucumber;
+import io.cucumber.junit.CucumberOptions;
+import org.junit.runner.RunWith;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = "src/test/resources/ems/addUser.feature",
+        glue = {"AddUserTest.definition"}
+)
+public class AddUserIntegrationTest {
+}
