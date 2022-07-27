@@ -15,7 +15,6 @@
       <button @click="checkUser()">Login</button>
     </div>
     <div class="bottomPart">
-      <!--<a href="http://localhost:3000/forgotpassword">Forgot password?</a>-->
       <button class="forgotPassword" @click="redirectPage('/forgotpassword')">Forgot password?</button>
     </div>
     <div class="bottomPart">

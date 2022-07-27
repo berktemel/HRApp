@@ -19,7 +19,6 @@
 
 <script>
 import DepartmentService from "../services/DepartmentService"
-import UserService from "../services/UserService"
 import NavigationBar from "../components/NavigationBar.vue"
 
 export default {

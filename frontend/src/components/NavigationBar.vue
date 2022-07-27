@@ -3,27 +3,22 @@
     <el-menu class="menu" mode="horizontal" :default-active="$route.path" text-color="white"
     background-color="#696969FF" active-text-color="red">
       <el-menu-item index="/" @click="redirectPage('/')">
-        <!--<router-link class="link" to="/">Employees</router-link>-->
         Employees
       </el-menu-item>
       <el-menu-item index="/departments" @click="redirectPage('/departments')">
-        <!--<router-link class="link" to='/departments'>Departments</router-link>-->
         Departments
       </el-menu-item>
       <el-submenu v-if="this.isAdmin" index="3">
         <template #title>Users</template>
           <el-menu-item index="/users" @click="redirectPage('/users')">
-            <!--<router-link class="link" to="/users">Verified</router-link>-->
             Verified
           </el-menu-item>
           <el-menu-item index="/users/pending" @click="redirectPage('/users/pending')">
-            <!--<router-link class="link" to="/users/pending">Pending</router-link>-->
             Pending
           </el-menu-item>
       </el-submenu>
       <el-menu-item index="/login" @click="logout();redirectPage('/login')">
         Logout
-        <!--<router-link class="link" to="/login" @click="logout()">Logout</router-link>-->
       </el-menu-item>
       <span style="cursor: pointer" @click="changeSidebar">
         <el-badge :value="numberOfUnread" class="notificationBadge" type="danger">
@@ -151,7 +146,6 @@ export default {
           .then(response => {
             this.user = response.data
           })
-      //this.user = UserService.getUser(localStorage.getItem("userEmail"))
     },
     changeAddNotification() {
       this.addNotification = !this.addNotification

@@ -44,12 +44,10 @@ export default {
       this.$router.replace('/login')
     },
     getUser() {
-      //let hash = window.location.pathname.split('/').pop()
       UserService.getUserByResetPwToken(window.location.pathname.split('/').pop())
           .then(response => {
         this.user = response.data
       })
-      //this.user = UserService.getUserByResetPwToken(this.user)
     },
     submit() {
       if(this.checkPasswords()) {

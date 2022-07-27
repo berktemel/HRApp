@@ -7,7 +7,6 @@
 
 <script>
 import NotificationService from "../services/NotificationService";
-import UserService from "../services/UserService";
 export default {
   name: "NotificationList",
   props: ['notification', 'index', 'unreadNumber'],
