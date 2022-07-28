@@ -23,17 +23,17 @@ public class Employee implements Serializable {
 
     @Column(name = "email")
     private String email;
-    
+
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "departmentId", nullable = false)
     @Cascade(CascadeType.SAVE_UPDATE)
     @JsonBackReference
     private Department department;
-    
+
     @Column(name = "startDate")
     private String startDate;
-    
+
     @Column(name = "salary")
     private int salary;
 
@@ -117,16 +117,26 @@ public class Employee implements Serializable {
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
-    
+
     public int getSalary() {
     	return salary;
     }
-    
+
     public void setSalary(int salary) {
     	this.salary = salary;
     }
 
     public String getDepartmentName() {
         return department.getDepName();
+    }
+    @Override
+    public String toString() {
+        return "{\n\tid: " + this.id + "\n\tfirstName: " + this.firstName +
+                "\n\tlastName: " + this.lastName +
+                "\n\temail: " + this.email +
+                "\n\tdepartment: " + getDepartmentName() +
+                "\n\tstartDate: " + this.startDate +
+                "\n\tsalary: " + this.salary +
+                "\n}";
     }
 }

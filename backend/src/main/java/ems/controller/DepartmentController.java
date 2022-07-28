@@ -40,6 +40,9 @@ public class DepartmentController {
             List<DepartmentDto> departments = departmentService.findAll()
                     .stream().map(this::convertToDto)
                             .collect(Collectors.toList());
+            for(Department department: departmentService.findAll()) {
+                System.out.println(department.toString());
+            }
             return new ResponseEntity<>(departments, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -51,6 +54,7 @@ public class DepartmentController {
     public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") long id) {
         try {
             Department department = departmentService.findById(id);
+            System.out.println(department.toString());
             return new ResponseEntity<>(convertToDto(department), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -64,13 +68,13 @@ public class DepartmentController {
             Department department = convertToEntity(departmentDto);
             departmentService.save(department);
             DepartmentDto response = convertToDto(department);
+            System.out.println(department.toString());
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
     @PutMapping("/departments/{id}")
     public ResponseEntity<DepartmentDto> editDepartment(@PathVariable("id") long id, @RequestBody DepartmentDto departmentDto) {
         try {

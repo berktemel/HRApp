@@ -42,6 +42,9 @@ public class UserController {
             List<UserDto> users = userService.findAll()
                     .stream().map(this::convertToDto)
                     .collect(Collectors.toList());
+            for(User user: userService.findAll()) {
+                System.out.println(user.toString());
+            }
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -52,6 +55,7 @@ public class UserController {
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
         try {
             User user = userService.findByEmail(email);
+            System.out.println(user.toString());
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -77,6 +81,9 @@ public class UserController {
             List<NotificationDto> notificationDtos = user1.getNotifications()
                     .stream().map(this::convertToDto)
                     .collect(Collectors.toList());
+            for(Notification notification: user1.getNotifications()) {
+                System.out.println(notification.toString());
+            }
             return new ResponseEntity<>(notificationDtos, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -102,6 +109,7 @@ public class UserController {
         try {
             User user = convertToEntity(userDto);
             userService.addUser(user);
+            System.out.println(user.toString());
             UserDto response = convertToDto(user);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
@@ -177,6 +185,7 @@ public class UserController {
         try {
             User user = userService.findByEmail(userDto.getEmail());
             user.copy(userDto);
+            System.out.println(user.toString());
             String hashedPw = userService.hashPassword(userDto.getPassword());
             user.setPassword(hashedPw);
             userService.save(user);
@@ -234,8 +243,6 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
     private UserDto convertToDto(User user) {
         return modelMapper.map(user, UserDto.class);
     }

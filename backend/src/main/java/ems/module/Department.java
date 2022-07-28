@@ -15,22 +15,22 @@ public class Department implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long departmentId;
-	
+
 	@Column(name = "depName")
 	private String depName;
 
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Employee> employees = new ArrayList<>();
-	
+
 	public Department() {}
-	
+
 	public Department(long departmentId, String depName, ArrayList<Employee> employees) {
 		this.departmentId = departmentId;
 		this.depName = depName;
 		this.employees = employees;
 	}
-	
+
 	public Department(Department department) {
 		this.departmentId = department.departmentId;
 		this.depName = department.depName;
@@ -72,5 +72,9 @@ public class Department implements Serializable {
 
 	public void deleteEmployee(Employee employee) {
 		employees.remove(employee);
+	}
+	@Override
+	public String toString() {
+		return "{\n\tid: " + this.departmentId + "\n\tdepName: " + this.depName + "\n}";
 	}
 }

@@ -83,4 +83,9 @@ public class User {
     public void deleteNotification(Notification notification) {
         notifications.remove(notification);
     }
+    @Override
+    public String toString() {
+        return "{\n\tid: " + this.id + "\n\tname: " + this.name + "\n\tlastName: " + this.lastName +
+                "\n\temail: " + this.email + "\n\trole: " + this.role + "\n}";
+    }
 }

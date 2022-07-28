@@ -11,4 +11,12 @@ public class EmailDetails {
     private String to;
     private String subject;
     private String body;
+
+    @Override
+    public String toString() {
+        return "{\n\tto: " + this.to +
+                "\n\tsubject: " + this.subject +
+                "\n\tbody: " + this.body +
+                "\n}";
+    }
 }

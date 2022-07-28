@@ -35,6 +35,9 @@ public class EmployeeController {
             List<EmployeeDto> employees = employeeService.findAll()
                     .stream().map(this::convertToDto)
                     .collect(Collectors.toList());
+            for(Employee employee: employeeService.findAll()) {
+                System.out.println(employee.toString());
+            }
             return new ResponseEntity<>(employees, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -46,6 +49,7 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") long id) {
         try {
             Employee employee = employeeService.findById(id);
+            System.out.println(employee.toString());
             return new ResponseEntity<>(convertToDto(employee), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -61,6 +65,7 @@ public class EmployeeController {
             }
             Employee employee = convertToEntity(employeeDto);
             addEmployeeToDepartment(employee);
+            System.out.println(employee.toString());
             return new ResponseEntity<>(convertToDto(employee), HttpStatus.CREATED);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());

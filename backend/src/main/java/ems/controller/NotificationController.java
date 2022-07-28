@@ -35,6 +35,9 @@ public class NotificationController {
             List<NotificationDto> notifications = notificationService.findAll()
                     .stream().map(this::convertToDto)
                     .collect(Collectors.toList());
+            for(Notification notification: notificationService.findAll()) {
+                System.out.println(notification.toString());
+            }
             return new ResponseEntity<>(notifications, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -46,6 +49,7 @@ public class NotificationController {
     public ResponseEntity<NotificationDto> getNotificationById(@PathVariable("id") Long id) {
         try {
             Notification notification = notificationService.findByNotificationId(id);
+            System.out.println(notification.toString());
             return new ResponseEntity<>(convertToDto(notification), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -63,6 +67,7 @@ public class NotificationController {
                 user.addNotification(convertToEntity(copy));
                 userService.save(user);
             }
+            System.out.println(convertToEntity(notificationDto).toString());
             return new ResponseEntity<>(notificationDto, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println("[Error]:" + e.getMessage());
@@ -79,6 +84,7 @@ public class NotificationController {
                 user.deleteNotification(notification);
                 userService.save(user);
             }
+            System.out.println(notification.toString());
             notificationService.deleteByNotificationId(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {

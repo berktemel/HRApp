@@ -33,4 +33,10 @@ public class Notification {
 
     @Column(columnDefinition = "boolean default false")
     private boolean readStatus;
+    @Override
+    public String toString() {
+        return "{\n\tid: " + this.notificationId + "\n\tsender: " + this.sender +
+                "\n\tsubject: " + this.subject +
+                "\n\tbody: " + this.body +  "\n}";
+    }
 }
