@@ -37,17 +37,20 @@ public class EmployeeController {
                     .collect(Collectors.toList());
             return new ResponseEntity<>(employees, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/employees/{id}")
     public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable("id") long id) {
-        Employee employee = employeeService.findById(id);
-        if(employee != null)
+        try {
+            Employee employee = employeeService.findById(id);
             return new ResponseEntity<>(convertToDto(employee), HttpStatus.OK);
-        else
+        } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/employees")
@@ -60,6 +63,7 @@ public class EmployeeController {
             addEmployeeToDepartment(employee);
             return new ResponseEntity<>(convertToDto(employee), HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -77,7 +81,8 @@ public class EmployeeController {
             } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -90,6 +95,7 @@ public class EmployeeController {
             employeeService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

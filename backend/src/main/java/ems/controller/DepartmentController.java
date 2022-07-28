@@ -42,17 +42,20 @@ public class DepartmentController {
                             .collect(Collectors.toList());
             return new ResponseEntity<>(departments, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/departments/{id}")
     public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable("id") long id) {
-        Department department = departmentService.findById(id);
-        if(department != null)
+        try {
+            Department department = departmentService.findById(id);
             return new ResponseEntity<>(convertToDto(department), HttpStatus.OK);
-        else
+        } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/departments")
@@ -63,6 +66,7 @@ public class DepartmentController {
             DepartmentDto response = convertToDto(department);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -75,6 +79,7 @@ public class DepartmentController {
             departmentService.save(departmentToEdit);
             return new ResponseEntity<>(convertToDto(departmentToEdit), HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -85,6 +90,7 @@ public class DepartmentController {
             departmentService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -96,5 +102,5 @@ public class DepartmentController {
     private Department convertToEntity(DepartmentDto departmentDto) {
         return modelMapper.map(departmentDto, Department.class);
     }
-	
+
 }

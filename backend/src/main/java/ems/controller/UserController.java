@@ -44,15 +44,17 @@ public class UserController {
                     .collect(Collectors.toList());
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @GetMapping("/users/{email}")
     public ResponseEntity<UserDto> getUserByEmail(@PathVariable("email") String email) {
-        User user = userService.findByEmail(email);
-        if(user != null) {
+        try {
+            User user = userService.findByEmail(email);
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
-        } else {
+        } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -63,6 +65,7 @@ public class UserController {
             User user = userService.findByResetPwToken(hash);
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -76,6 +79,7 @@ public class UserController {
                     .collect(Collectors.toList());
             return new ResponseEntity<>(notificationDtos, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -88,6 +92,7 @@ public class UserController {
             userService.save(user);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -100,6 +105,7 @@ public class UserController {
             UserDto response = convertToDto(user);
             return new ResponseEntity<>(response, HttpStatus.CREATED);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -121,6 +127,7 @@ public class UserController {
                 return new ResponseEntity<>(false, HttpStatus.OK);
             }
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -144,6 +151,7 @@ public class UserController {
             }
             return new ResponseEntity<>(true, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             User user = userService.findByEmail(email);
             user.setToken(null);
             userService.save(user);
@@ -159,6 +167,7 @@ public class UserController {
             userService.save(user);
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -173,6 +182,7 @@ public class UserController {
             userService.save(user);
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
         } catch (NoSuchAlgorithmException e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -186,6 +196,7 @@ public class UserController {
             userService.save(user);
             return new ResponseEntity<>(user, HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
@@ -206,6 +217,7 @@ public class UserController {
             userService.deleteById(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -218,6 +230,7 @@ public class UserController {
             userService.save(user);
             return new ResponseEntity<>(convertToDto(user), HttpStatus.OK);
         } catch (Exception e) {
+            System.out.println("[Error]:" + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
